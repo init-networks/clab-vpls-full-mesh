@@ -1,0 +1,39 @@
+/interface ethernet
+set [ find default-name=ether1 ] comment=MGMT disable-running-check=no
+set [ find default-name=ether2 ] comment=INFRA-PE1 disable-running-check=no
+set [ find default-name=ether3 ] comment=INFRA-PE2 disable-running-check=no
+set [ find default-name=ether4 ] comment=INFRA-PE3 disable-running-check=no
+set [ find default-name=ether5 ] comment=INFRA-PE4 disable-running-check=no
+set [ find default-name=ether6 ] comment=INFRA-RR1 disable-running-check=no
+/interface list
+add name=IL-OSPF_V2-AREA_0
+add name=IL-LDP
+add name=IL-OSPF_V2-AREA_0-PASSIVE
+/routing ospf instance
+add disabled=no name=ospf-v2 router-id=10.10.10.1
+/routing ospf area
+add disabled=no instance=ospf-v2 name=backbone
+/interface list member
+add interface=ether2 list=IL-OSPF_V2-AREA_0
+add interface=ether3 list=IL-OSPF_V2-AREA_0
+add interface=ether4 list=IL-OSPF_V2-AREA_0
+add interface=ether5 list=IL-OSPF_V2-AREA_0
+add interface=ether6 list=IL-OSPF_V2-AREA_0
+add interface=ether2 list=IL-LDP
+add interface=ether3 list=IL-LDP
+add interface=ether4 list=IL-LDP
+add interface=ether5 list=IL-LDP
+add interface=lo list=IL-OSPF_V2-AREA_0-PASSIVE
+/ip address
+add address=192.168.0.1/30 interface=ether2 network=192.168.0.0
+add address=192.168.0.5/30 interface=ether3 network=192.168.0.4
+add address=192.168.0.9/30 interface=ether4 network=192.168.0.8
+add address=192.168.0.13/30 interface=ether5 network=192.168.0.12
+add address=10.10.10.1 interface=lo network=10.10.10.1
+/mpls ldp
+add lsr-id=10.10.10.1 transport-addresses=10.10.10.1
+/mpls ldp interface
+add interface=IL-LDP
+/routing ospf interface-template
+add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0
+add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0-PASSIVE passive

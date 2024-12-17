@@ -1,0 +1,19 @@
+/interface ethernet
+set [ find default-name=ether1 ] comment=MGMT disable-running-check=no
+set [ find default-name=ether2 ] comment=INFRA-P1 disable-running-check=no
+/interface list
+add name=IL-OSPF_V2-AREA_0
+add name=IL-OSPF_V2-AREA_0-PASSIVE
+/routing ospf instance
+add disabled=no name=ospf-v2 router-id=10.20.20.1
+/routing ospf area
+add disabled=no instance=ospf-v2 name=backbone
+/interface list member
+add interface=ether2 list=IL-OSPF_V2-AREA_0
+add interface=lo list=IL-OSPF_V2-AREA_0-PASSIVE
+/ip address
+add address=192.168.0.18/30 interface=ether2
+add address=10.20.20.1 interface=lo
+/routing ospf interface-template
+add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0
+add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0-PASSIVE passive
