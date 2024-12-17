@@ -1,19 +1,23 @@
-/interface ethernet
-set [ find default-name=ether1 ] comment=MGMT disable-running-check=no
-set [ find default-name=ether2 ] comment=INFRA-P1 disable-running-check=no
-/interface list
-add name=IL-OSPF_V2-AREA_0
-add name=IL-OSPF_V2-AREA_0-PASSIVE
+/interface bridge
+add name=lo
+/routing bgp instance
+set default as=65000
 /routing ospf instance
-add disabled=no name=ospf-v2 router-id=10.20.20.1
-/routing ospf area
-add disabled=no instance=ospf-v2 name=backbone
-/interface list member
-add interface=ether2 list=IL-OSPF_V2-AREA_0
-add interface=lo list=IL-OSPF_V2-AREA_0-PASSIVE
+set [ find default=yes ] router-id=192.168.205.29
 /ip address
 add address=192.168.0.18/30 interface=ether2
 add address=10.20.20.1 interface=lo
-/routing ospf interface-template
-add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0
-add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0-PASSIVE passive
+/mpls ldp
+set enabled=yes lsr-id=10.20.20.1 transport-address=10.20.20.1
+/mpls ldp interface
+add interface=ether2
+/routing bgp peer
+add address-families=l2vpn-cisco name=pe1 passive=yes remote-address=10.10.10.1 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe2 passive=yes remote-address=10.10.10.2 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe3 passive=yes remote-address=10.10.10.3 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe4 passive=yes remote-address=10.10.10.4 remote-as=65000 route-reflect=yes update-source=lo
+/routing ospf interface
+add interface=ether2
+/routing ospf network
+add area=backbone network=10.20.20.1/32
+add area=backbone network=192.168.0.16/30
