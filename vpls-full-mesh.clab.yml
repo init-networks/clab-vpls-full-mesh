@@ -6,32 +6,32 @@ topology:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-7.17rc1
       startup-config: config/config_p1.txt
-      group: spine
+      group: 10
     pe1:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-7.17rc1
       startup-config: config/config_pe1.txt
-      group: leaf
+      group: 9
     pe2:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-7.17rc1
       startup-config: config/config_pe2.txt
-      group: leaf
+      group: 9
     pe3:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-7.17rc1
       startup-config: config/config_pe3.txt
-      group: leaf
+      group: 9
     pe4:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-7.17rc1
       startup-config: config/config_pe4.txt
-      group: leaf
+      group: 9
     rr1:
       kind: mikrotik_ros
       image: initnetworks/clab_images:ros-6.49.13
       startup-config: config/config_rr1.txt
-      group: leaf
+      group: 9
     pc1:
       kind: linux
       image: initnetworks/clab_images:host
