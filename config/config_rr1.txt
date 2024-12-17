@@ -8,10 +8,10 @@ set [ find default=yes ] router-id=10.20.20.1
 add address=192.168.0.18/30 interface=ether2
 add address=10.20.20.1 interface=lo
 /routing bgp peer
-add address-families=l2vpn-cisco name=pe1 passive=yes remote-address=10.10.10.1 remote-as=65000 route-reflect=yes update-source=lo
-add address-families=l2vpn-cisco name=pe2 passive=yes remote-address=10.10.10.2 remote-as=65000 route-reflect=yes update-source=lo
-add address-families=l2vpn-cisco name=pe3 passive=yes remote-address=10.10.10.3 remote-as=65000 route-reflect=yes update-source=lo
-add address-families=l2vpn-cisco name=pe4 passive=yes remote-address=10.10.10.4 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe1 passive=yes remote-address=10.0.0.1 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe2 passive=yes remote-address=10.0.0.2 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe3 passive=yes remote-address=10.0.0.3 remote-as=65000 route-reflect=yes update-source=lo
+add address-families=l2vpn-cisco name=pe4 passive=yes remote-address=10.0.0.4 remote-as=65000 route-reflect=yes update-source=lo
 /routing ospf interface
 add interface=ether2
 /routing ospf network
