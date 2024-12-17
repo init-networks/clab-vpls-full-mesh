@@ -24,3 +24,5 @@ add interface=IL-LDP
 /routing ospf interface-template
 add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0
 add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0-PASSIVE passive
+/routing bgp connection
+add address-families=l2vpn-cisco as=65000 disabled=no local.address=10.0.0.1 .role=ibgp name=rr1 remote.address=10.20.20.1
