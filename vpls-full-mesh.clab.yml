@@ -1,0 +1,60 @@
+name: test-lab
+
+topology:
+  nodes:
+    p1:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-7.17rc1
+      startup-config: config/config_p1.txt
+      group: spine
+    pe1:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-7.17rc1
+      startup-config: config/config_pe1.txt
+      group: leaf
+    pe2:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-7.17rc1
+      startup-config: config/config_pe2.txt
+      group: leaf
+    pe3:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-7.17rc1
+      startup-config: config/config_pe3.txt
+      group: leaf
+    pe4:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-7.17rc1
+      startup-config: config/config_pe4.txt
+      group: leaf
+    rr1:
+      kind: mikrotik_ros
+      image: initnetworks/clab_images:ros-6.49.13
+      startup-config: config/config_rr1.txt
+      group: leaf
+    pc1:
+      kind: linux
+      image: initnetworks/clab_images:host
+      group: server
+    pc2:
+      kind: linux
+      image: initnetworks/clab_images:host
+      group: server
+    pc3:
+      kind: linux
+      image: initnetworks/clab_images:host
+      group: server
+    pc4:
+      kind: linux
+      image: initnetworks/clab_images:host
+      group: server
+  links:
+    - endpoints: ["p1:eth1", "pe1:eth1"]
+    - endpoints: ["p1:eth2", "pe2:eth1"]
+    - endpoints: ["p1:eth3", "pe3:eth1"]
+    - endpoints: ["p1:eth4", "pe4:eth1"]
+    - endpoints: ["p1:eth5", "rr1:eth1"]
+    - endpoints: ["pe1:eth2", "pc1:eth1"]
+    - endpoints: ["pe2:eth2", "pc2:eth1"]
+    - endpoints: ["pe3:eth2", "pc3:eth1"]
+    - endpoints: ["pe4:eth2", "pc4:eth1"]
