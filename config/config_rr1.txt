@@ -7,10 +7,6 @@ set [ find default=yes ] router-id=10.20.20.1
 /ip address
 add address=192.168.0.18/30 interface=ether2
 add address=10.20.20.1 interface=lo
-/mpls ldp
-set enabled=yes lsr-id=10.20.20.1 transport-address=10.20.20.1
-/mpls ldp interface
-add interface=ether2
 /routing bgp peer
 add address-families=l2vpn-cisco name=pe1 passive=yes remote-address=10.10.10.1 remote-as=65000 route-reflect=yes update-source=lo
 add address-families=l2vpn-cisco name=pe2 passive=yes remote-address=10.10.10.2 remote-as=65000 route-reflect=yes update-source=lo
