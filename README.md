@@ -1,2 +1,2 @@
 # clab-vpls-full-mesh
-BGP Full Mesh VPLS Containlelab
+BGP Full Mesh VPLS Containerlab
