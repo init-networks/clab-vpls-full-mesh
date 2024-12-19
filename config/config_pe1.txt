@@ -29,4 +29,4 @@ add address-families=l2vpn-cisco as=65000 disabled=no local.address=10.0.0.1 .ro
 /interface bridge
 add name=bridge-vpls-01 protocol-mode=none
 /routing bgp vpls
-add bridge=bridge-vpls-01 bridge-cost=1 bridge-horizon=1 cisco-id=10.0.0.10&65000:01 disabled=no export-route-targets=65000:01 import-route-targets=65000:01 name=vpls-21101-01 rd=65000:01
+add bridge=bridge-vpls-01 bridge-cost=1 bridge-horizon=1 cisco-id=10.0.0.1&65000:01 disabled=no export-route-targets=65000:01 import-route-targets=65000:01 name=vpls-21101-01 rd=65000:01
