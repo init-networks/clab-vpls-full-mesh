@@ -26,3 +26,7 @@ add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0
 add area=backbone disabled=no interfaces=IL-OSPF_V2-AREA_0-PASSIVE passive
 /routing bgp connection
 add address-families=l2vpn-cisco as=65000 disabled=no local.address=10.0.0.1 .role=ibgp name=rr1 remote.address=10.20.20.1
+/interface bridge
+add name=bridge-vpls-01 protocol-mode=none
+/routing bgp vpls
+add bridge=bridge-vpls-01 bridge-cost=1 bridge-horizon=1 cisco-id=10.0.0.10&65000:01 disabled=no export-route-targets=65000:01 import-route-targets=65000:01 name=vpls-21101-01 rd=65000:01
